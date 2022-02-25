@@ -1,5 +1,14 @@
+#include <Arduino.h>
+#include "HX711.h"
+#include "pump.h"
+
+#include <Wire.h>
+#include <Adafruit_MLX90614.h>
 /* 使用0.96寸的OLED屏幕需要使用包含这个头文件 */
 #include "SSD1306Wire.h"
+
+float Weight = 0;     //称重值初始化
+Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 
 /* 设置oled屏幕的相关信息 */
 const int I2C_ADDR = 0x3c; // oled屏幕的I2c地址
@@ -83,7 +92,11 @@ void drawRect(void)
     void setup()
     {
         // 初始化串口
-        Serial.begin(9600);
+     	Serial.begin(9600);	
+	Serial.print("Welcome to use!\n");
+//  Init_Hx711();				//初始化HX711模块连接的IO设置
+    Init_Relay();
+	mlx.begin();  
         BLINKER_DEBUG.stream(Serial);
         BLINKER_DEBUG.debugAll();
 
@@ -108,6 +121,19 @@ void drawRect(void)
     void loop()
     {
         Blinker.run();
+        /*	Weight = Get_Weight();	//计算放在传感器上的重物重量
+    Serial.print("物重：");
+	Serial.print(float(Weight/1000),3);	//串口显示重量
+	Serial.print(" kg\n");	//显示单位
+	Serial.print("\n");		//显示单位
+	delay(2000);				//延时2s
+*/   
+    Relay1_Run();
+    Serial.print("Ambient = "); Serial.print(mlx.readAmbientTempC()); 
+    Serial.print("*C\tObject = "); Serial.print(mlx.readObjectTempC()); Serial.println("*C");
+    Serial.print("Ambient = "); Serial.print(mlx.readAmbientTempF()); 
+    Serial.print("*F\tObject = "); Serial.print(mlx.readObjectTempF()); Serial.println("*F");
+	delay(2000);		
         oled.setFont(ArialMT_Plain_24); // 设置字体
         oled.drawString(0, 0, "LZU!");  //将要显示的文字写入缓存
         oled.drawString(0, 20, "I am hlchen!");
