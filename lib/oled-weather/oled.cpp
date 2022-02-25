@@ -3,8 +3,11 @@
    Begin Settings
  **************************/
 
-const char* WIFI_SSID = "9Pro";  //填写你的WIFI名称及密码
-const char* WIFI_PWD = "13451812385";
+const char *WIFI_SSID = "TP-LINK_2011"; //填写你的WIFI名称及密码
+const char *WIFI_PWD = "20112011";
+
+//const char* WIFI_SSID = "9Pro";  //填写你的WIFI名称及密码
+//const char* WIFI_PWD = "13451812385";
 
 const char* BILIBILIID = "34037524";  //填写你的B站账号
 

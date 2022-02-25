@@ -1,12 +1,14 @@
+ //把远程下载下来的代码合并到本地仓库，远程的和本地的合并
+ // git merge origin / master
+
 #include <Arduino.h>
-//#include "HX711.h"
+ //#include "HX711.h"
 #include "pump.h"
 #include "oled.h"
 #include <Wire.h>
 #include <Adafruit_MLX90614.h>
 
-
-float Weight = 0;     //称重值初始化
+    float Weight = 0; //称重值初始化
 Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 
 
@@ -16,11 +18,11 @@ Adafruit_MLX90614 mlx = Adafruit_MLX90614();
 #include <Blinker.h>
 
 char auth[] = "66b44e42cba1";
-//char ssid[] = "TP-LINK_2011";
-//char pswd[] = "20112011";
+char ssid[] = "TP-LINK_2011";
+char pswd[] = "20112011";
 
-char ssid[] = "9Pro";
-char pswd[] = "13451812385";
+//char ssid[] = "9Pro";
+//char pswd[] = "13451812385";
 
 // 新建组件对象
 BlinkerButton Button1("btn-abc");
